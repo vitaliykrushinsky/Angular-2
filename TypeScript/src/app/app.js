@@ -19,13 +19,16 @@ var SubComponent = (function () {
         this.myService = myService;
         console.log(myService.info);
     }
+    SubComponent.prototype.onEnter = function (myBox) {
+        this.myService.addInfo(myBox);
+    };
     SubComponent = __decorate([
         angular2_1.Component({
             selector: 'sub-comp'
         }),
         angular2_1.View({
             directives: [angular2_1.NgFor],
-            template: "\n\t<div *ng-for=\"#info of myService.info\">\n\t<h3><em>{{ info }}</em></h3>\n\t</div>\n\t"
+            template: "\n\t<input #my-box (keyup.enter)=\"onEnter(myBox.value)\"/>\n\t<div *ng-for=\"#infor of myService.info\">\n\t\t<h3><em>{{ infor }}</em></h3>\n\t</div>\n\t"
         }), 
         __metadata('design:paramtypes', [service_1.Service])
     ], SubComponent);

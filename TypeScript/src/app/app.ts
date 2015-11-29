@@ -9,8 +9,9 @@ Example 3 Incorporate Service
 @View({
 	directives: [NgFor],
 	template: `
-	<div *ng-for="#info of myService.info">
-	<h3><em>{{ info }}</em></h3>
+	<input #my-box (keyup.enter)="onEnter(myBox.value)"/>
+	<div *ng-for="#infor of myService.info">
+		<h3><em>{{ infor }}</em></h3>
 	</div>
 	`
 })
@@ -18,6 +19,9 @@ class SubComponent {
 	
 	constructor(public myService: Service) {
 		console.log(myService.info)
+	}
+	onEnter(myBox) {
+		this.myService.addInfo(myBox);
 	}
 }
 
@@ -29,7 +33,7 @@ class SubComponent {
 	directives: [SubComponent],
 	template: `
 	<h2>I am learning</h2>
-	<sub-comp></sub-comp
+	<sub-comp></sub-comp>
 	`
 })
 class mainComponent {
